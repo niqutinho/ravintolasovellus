@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opiskelijaravintolat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Opiskelijaravintolat</h1>
+    <nav class="user-nav" id="user-nav" aria-label="Käyttäjä">
+      <button type="button" id="login-button">Kirjaudu / Rekisteröidy</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="filters" aria-label="Suodattimet">
+      <label>Haku
+        <input type="search" id="search-input" placeholder="Ravintolan nimi tai osoite">
+      </label>
+      <label>Kaupunki
+        <select id="city-filter"><option value="">Kaikki</option></select>
+      </label>
+      <label>Palveluntarjoaja
+        <select id="company-filter"><option value="">Kaikki</option></select>
+      </label>
+      <label>Kieli
+        <select id="language-select">
+          <option value="fi">Suomi</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+    </section>
+
+    <div id="map" class="map" aria-label="Ravintolat kartalla"></div>
+
+    <p id="status" role="status"></p>
+    <ul class="restaurant-list" id="restaurant-list"></ul>
+  </main>
+
+  <dialog id="menu-dialog" aria-labelledby="menu-title">
+    <div class="dialog-header">
+      <h2 id="menu-title"></h2>
+      <button type="button" class="close" data-close aria-label="Sulje">✕</button>
+    </div>
+    <div class="tabs">
+      <button type="button" data-range="daily" class="active">Päivä</button>
+      <button type="button" data-range="weekly">Viikko</button>
+    </div>
+    <div id="menu-content"></div>
+  </dialog>
+
+  <dialog id="auth-dialog" aria-labelledby="auth-title">
+    <div class="dialog-header">
+      <h2 id="auth-title">Kirjautuminen</h2>
+      <button type="button" class="close" data-close aria-label="Sulje">✕</button>
+    </div>
+    <form id="auth-form">
+      <label>Käyttäjätunnus <input name="username" required minlength="3" autocomplete="username"></label>
+      <label id="email-row" hidden>Sähköposti <input name="email" type="email" autocomplete="email"></label>
+      <label>Salasana <input name="password" type="password" required minlength="5" autocomplete="current-password"></label>
+      <p class="form-message" id="auth-message" role="alert"></p>
+      <button type="submit" id="auth-submit">Kirjaudu</button>
+      <button type="button" class="link" id="auth-toggle">Ei tunnusta? Rekisteröidy</button>
+    </form>
+  </dialog>
+
+  <dialog id="profile-dialog" aria-labelledby="profile-title">
+    <div class="dialog-header">
+      <h2 id="profile-title">Oma profiili</h2>
+      <button type="button" class="close" data-close aria-label="Sulje">✕</button>
+    </div>
+    <div id="avatar-preview"></div>
+    <form id="avatar-form">
+      <label>Profiilikuva <input type="file" name="avatar" accept="image/*" required></label>
+      <button type="submit">Lataa kuva</button>
+    </form>
+    <form id="profile-form">
+      <label>Käyttäjätunnus <input name="username" required minlength="3"></label>
+      <label>Sähköposti <input name="email" type="email" required></label>
+      <label>Uusi salasana (valinnainen) <input name="password" type="password" minlength="5" autocomplete="new-password"></label>
+      <p class="form-message" id="profile-message" role="alert"></p>
+      <button type="submit">Tallenna tiedot</button>
+    </form>
+  </dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

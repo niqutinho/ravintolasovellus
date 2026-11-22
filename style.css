@@ -1,0 +1,139 @@
+:root {
+  --bg: #f5f6f8;
+  --surface: #fff;
+  --text: #1c2330;
+  --muted: #5d6675;
+  --primary: #0b6e4f;
+  --primary-dark: #08523b;
+  --accent: #f2b705;
+  --border: #d9dde4;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--primary);
+  color: #fff;
+}
+
+.site-header h1 { margin: 0; font-size: 1.5rem; }
+.user-nav { display: flex; gap: .5rem; align-items: center; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+
+button {
+  font: inherit;
+  padding: .5rem .9rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+button:hover { background: var(--primary-dark); }
+button.secondary { background: transparent; color: inherit; border: 1px solid currentColor; }
+.restaurant-card button.secondary { color: var(--primary); }
+button.link { background: none; color: var(--primary); text-decoration: underline; padding: 0; }
+.site-header button { background: #fff; color: var(--primary); }
+.site-header button.secondary { background: transparent; color: #fff; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+label { display: flex; flex-direction: column; gap: .25rem; font-weight: 600; font-size: .9rem; }
+input, select {
+  font: inherit;
+  padding: .5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+#status { color: var(--muted); }
+
+.restaurant-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem;
+}
+
+.restaurant-card {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+}
+.restaurant-card h2 { margin: 0; font-size: 1.15rem; }
+.restaurant-card p { margin: 0; }
+.restaurant-card.nearest { border-color: var(--accent); background: #fffbea; }
+.restaurant-card.favourite { border-left: 6px solid var(--primary); }
+.meta { color: var(--muted); font-size: .9rem; }
+.badges { display: flex; gap: .4rem; min-height: 1.5rem; }
+.badge { background: var(--accent); padding: 0 .5rem; border-radius: 99px; font-size: .8rem; font-weight: 700; }
+.badge.fav { background: var(--primary); color: #fff; }
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .75rem; }
+
+dialog {
+  width: min(600px, 94vw);
+  max-height: 90vh;
+  border: 0;
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+dialog::backdrop { background: rgb(0 0 0 / .5); }
+.dialog-header { display: flex; justify-content: space-between; align-items: start; }
+.dialog-header h2 { margin: 0 0 .5rem; }
+.close { background: none; color: var(--text); font-size: 1.2rem; }
+.close:hover { background: var(--bg); }
+
+.tabs { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.tabs button { background: var(--bg); color: var(--text); }
+.tabs button.active { background: var(--primary); color: #fff; }
+
+.courses { padding-left: 1.1rem; }
+.courses li { margin-bottom: .4rem; }
+.price { color: var(--primary); font-weight: 600; }
+.diets { color: var(--muted); font-size: .9rem; }
+.error, .form-message { color: #b00020; min-height: 1.2em; margin: 0; }
+
+dialog form { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1rem; }
+
+.avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-right: .4rem; }
+.avatar.large { width: 96px; height: 96px; display: block; margin: 0 auto 1rem; }
+.profile-button { display: inline-flex; align-items: center; }
+
+@media (max-width: 600px) {
+  main { padding: 1rem; }
+  .site-header { padding: 1rem; }
+}
+
+.map { height: 360px; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: var(--radius); }
+.pin { display: block; width: 18px; height: 18px; border-radius: 50%; background: #1d6fd1; border: 3px solid #fff; box-shadow: 0 1px 4px rgb(0 0 0 / .5); }
+.pin.favourite { background: var(--primary); }
+.pin.nearest { background: var(--accent); width: 24px; height: 24px; }
